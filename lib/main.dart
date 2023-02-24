@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:trivia_application/answer.dart';
 import 'package:trivia_application/theme/app_theme.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:trivia_application/widgets/button.dart';
 
+import 'cep.dart';
 import 'question.dart';
 
 void main() => runApp(const TriviaApp());
@@ -12,12 +14,14 @@ class TriviaAppState extends State<TriviaApp> {
 
   void response() {
     final lastItem = selectedQuestion - 1;
-    setState(() {
-      if (selectedQuestion == lastItem) {
-        BotToast.showText(text: 'Não existem mais perguntas');
-      }
-      selectedQuestion++;
-    });
+    setState(
+      () {
+        if (selectedQuestion == lastItem) {
+          BotToast.showText(text: 'Não existem mais perguntas');
+        }
+        selectedQuestion++;
+      },
+    );
   }
 
   @override
@@ -70,6 +74,20 @@ class TriviaAppState extends State<TriviaApp> {
                 onPressed: response,
                 text:
                     selectedQuestion == 0 ? colorsAnswer[2] : animalsAnswer[2],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Button(
+                      builder: (BuildContext context) => const Cep(),
+                      child: const Text(
+                        'Código postal',
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

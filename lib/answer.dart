@@ -27,16 +27,20 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      width: size.width * 0.4,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: _buttonStyle,
-        child: Text(
-          text,
-          style: _answerStyle,
+    return Column(
+      children: [
+        SizedBox(
+          width: size.width * 0.4,
+          child: ElevatedButton(
+            onPressed: onPressed,
+            style: _buttonStyle,
+            child: Text(
+              text,
+              style: _answerStyle,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
