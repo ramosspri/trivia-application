@@ -1,103 +1,31 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:trivia_application/answer.dart';
-import 'package:trivia_application/theme/app_theme.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:trivia_application/widgets/button.dart';
+import 'package:provider/provider.dart';
+import 'package:trivia_application/pages/initial/initial_page.dart';
 
-import 'cep.dart';
-import 'question.dart';
+import 'services/auth/auth_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const TriviaApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthService(),
+        ),
+      ],
+      child: const TriviaApp(),
+    ),
+  );
 }
 
 class TriviaAppState extends State<TriviaApp> {
-  var selectedQuestion = 0;
-
-  void response() {
-    final lastItem = selectedQuestion - 1;
-    setState(
-      () {
-        if (selectedQuestion == lastItem) {
-          BotToast.showText(text: 'Não existem mais perguntas');
-        }
-        selectedQuestion++;
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final questions = [
-      'Qual sua cor favorita?',
-      'Qual seu animal favorito?',
-    ];
-
-    final colorsAnswer = [
-      'Amarelo',
-      'Azul',
-      'Vermelho',
-    ];
-
-    final animalsAnswer = [
-      'Cachorro',
-      'Gato',
-      'Peixe',
-    ];
-
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Trivia Application',
-          ),
-          backgroundColor: AppTheme.colors.lightPink,
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Question(text: questions[selectedQuestion]),
-              ),
-              Answer(
-                onPressed: response,
-                text:
-                    selectedQuestion == 0 ? colorsAnswer[0] : animalsAnswer[0],
-              ),
-              Answer(
-                onPressed: response,
-                text:
-                    selectedQuestion == 0 ? colorsAnswer[1] : animalsAnswer[1],
-              ),
-              Answer(
-                onPressed: response,
-                text:
-                    selectedQuestion == 0 ? colorsAnswer[2] : animalsAnswer[2],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Button(
-                      builder: (BuildContext context) => const Cep(),
-                      child: const Text(
-                        'Código postal',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: InitialPage(),
     );
   }
 }
