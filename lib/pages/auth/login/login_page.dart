@@ -48,8 +48,6 @@ class _LoginPageState extends State<LoginPage> {
         title: const Text(
           'Login',
         ),
-        backgroundColor: AppTheme.colors.caramel,
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

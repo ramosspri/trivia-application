@@ -43,8 +43,6 @@ class _RegisterPageState extends State<RegisterPage> {
         title: const Text(
           'Cadastro de usuário',
         ),
-        backgroundColor: AppTheme.colors.caramel,
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(

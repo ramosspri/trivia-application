@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:trivia_application/pages/initial/initial_page.dart';
 
 import '../../theme/app_theme.dart';
+import '../initial/initial_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -10,9 +10,12 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
-        backgroundColor: AppTheme.colors.caramel,
-        centerTitle: true,
+        title: Text(
+          'Home',
+          style: TextStyle(
+            fontFamily: AppTheme.text.tiltRegular.toString(),
+          ),
+        ),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(

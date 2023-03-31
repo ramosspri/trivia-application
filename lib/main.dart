@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trivia_application/pages/initial/initial_page.dart';
+import 'package:trivia_application/theme/app_theme.dart';
 
 import 'services/auth/auth_service.dart';
 
@@ -23,9 +24,12 @@ void main() async {
 class TriviaAppState extends State<TriviaApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: AppTheme.colors.caramel,
+      ),
       debugShowCheckedModeBanner: false,
-      home: InitialPage(),
+      home: const InitialPage(),
     );
   }
 }

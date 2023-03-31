@@ -29,8 +29,6 @@ class InitialPage extends StatelessWidget {
           title: const Text(
             'Trivia Application',
           ),
-          backgroundColor: AppTheme.colors.caramel,
-          centerTitle: true,
         ),
         body: Builder(
           builder: (context) {
